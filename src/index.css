@@ -1,19 +1,12 @@
 :root {
+  /* Variables de color (se adaptan solas al modo claro/oscuro) */
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
+  
+  /* Fuentes */
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
@@ -24,36 +17,25 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
 }
 
+/* Modo oscuro (Fondo para las estrellas) */
 @media (prefers-color-scheme: dark) {
   :root {
     --text: #9ca3af;
     --text-h: #f6f6f3;
-    --bg: #0f090e;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+    --bg: #0f090e; 
   }
 }
 
+/* Estilos base del body */
 body {
   margin: 0;
+  background-color: var(--bg) !important; 
+  color: var(--text-h); 
 }
 
+/* Contenedor principal de React */
 #root {
   width: 1126px;
   max-width: 100%;
@@ -62,49 +44,65 @@ body {
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-
+  position: relative;
+  z-index: 1; /* Por encima del canvas de las estrellas */
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
 
 h1 {
   font-size: 56px;
   letter-spacing: -1.68px;
   margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
 }
+
 h2 {
   font-size: 24px;
   line-height: 118%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
 }
+
 p {
   margin: 0;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+/* Diseño Responsive (Móviles y tablets) */
+@media (max-width: 1024px) {
+  :root { font-size: 16px; }
+  h1 { font-size: 36px; margin: 20px 0; }
+  h2 { font-size: 20px; }
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+/* =========================================
+   BOOTSTRAP: FORZAR COLOR PRIMARY A BLANCO
+   ========================================= */
+
+
+.btn-primary {
+  --bs-btn-color: #0f090e; /* Texto oscuro para que contraste sobre el botón blanco */
+  --bs-btn-bg: #ffffff;
+  --bs-btn-border-color: #ffffff;
+  --bs-btn-hover-color: #0f090e;
+  --bs-btn-hover-bg: #e5e4e7; 
+  --bs-btn-hover-border-color: #e5e4e7;
+  --bs-btn-active-color: #0f090e;
+  --bs-btn-active-bg: #d1d5db;
+  --bs-btn-active-border-color: #d1d5db;
+}
+
+.bg-primary {
+  background-color: #ffffff !important;
+  color: #0f090e !important;
+}
+
+.border-primary {
+  border-color: #ffffff !important;
+}
+
+h1.text-primary, 
+h2.text-primary, 
+p.text-primary, 
+span.text-primary,
+.text-primary {
+  color: #ffffff !important;
 }
